@@ -5,17 +5,16 @@ import Cloud2 from "../../../assets/HomePage/Banner/cloud2.png";
 
 export default function HomeBanner() {
   return (
-    <section  style={{
-    background: "linear-gradient(to right,  #F9FAFB, #B6B3B3)",
-  }} className="relative w-full overflow-hidden h-226">
+    <section style={{
+      background: "linear-gradient(to right,  #F9FAFB, #B6B3B3)",
+    }} className="relative w-full overflow-hidden h-226">
       <div className="w-[90%] group relative  mx-auto px-6 py-10 ">
-        {/* ☁️ CLOUD 1 – always visible */}
         <img
           src={Cloud1}
           alt="cloud"
           className="
-            absolute top-10 -left-120 w-100 opacity-40
-            transition-transform duration-700 ease-in-out
+            absolute -top-10 -left-160 w-130 opacity-100
+            transition-transform duration-1000 ease-in-out
             group-hover:translate-x-140 
           "
         />
@@ -24,14 +23,13 @@ export default function HomeBanner() {
           src={Cloud2}
           alt="cloud"
           className="
-            absolute top-50 left-10 w-100 opacity-40
-            transition-all duration-700 ease-in-out
-            group-hover:opacity-30 group-hover:translate-x-140 
+            absolute top-35 -left-25 w-130 opacity-100
+            transition-all duration-1000 ease-in-out
+            group-hover:opacity-100 group-hover:translate-x-140 
           "
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12 relative z-10">
-          {/* LEFT CONTENT */}
+        <div className="grid grid-cols-1 md:grid-cols-2  gap-12 relative z-10">
           <div className="mt-55">
             <h1
               style={{ fontSize: "70px", color: "black", marginBottom: "30px" }}
@@ -54,18 +52,22 @@ export default function HomeBanner() {
             </p>
           </div>
 
-          {/* RIGHT BANNER */}
           <div
             className="
               relative
-              transition-transform duration-700 ease-in-out
-              group-hover:-translate-y-17 border
+              transition-transform duration-1000 ease-in-out h-200 w-full top-40
+              group-hover:-translate-y-16
             "
             style={{
               backgroundImage: `url(${BannerStand})`,
-              backgroundSize: "contain",
+              backgroundSize: "cover",
+              backgroundRepeat: "no-repeat",
             }}
-          ></div>
+          >
+            <p className="absolute top-85 left-40 z-1 text-[28px] font-poppins font-bold" style={{color:"black"}}>If you're seeing this, <br/>
+              the ad already won</p>
+            <img src={Banner} className="absolute top-40 left-20 h-[425px] w-[760px]" />
+          </div>
         </div>
       </div>
     </section>

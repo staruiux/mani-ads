@@ -129,7 +129,7 @@ export default function PerfectAdSpace() {
 
       <div
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-6
-                    overflow-y-auto pr-2 max-h-[60vh]"
+                    overflow-y-auto pr-2 max-h-[60vh] scrollbar-hidden"
       >
         {filteredData.map((item) => (
           <div
