@@ -29,12 +29,12 @@ export default function Footer() {
             <h1 style={{ fontSize: "32px" }} className=" font-bold">
               <span className="relative inline-block">
                 Mani{" "} 
-                        <span className="absolute -left-0 -bottom-1 w-[75%] h-0.5 bg-red-500" />
+                    <span className="absolute -left-0 -bottom-1 w-[75%] h-0.5 bg-red-500"/>
               </span>
               Ads
             </h1>
           </div>
-          <p className="text-sm leading-relaxed text-[14px]">
+          <p className="leading-relaxed text-[14px]">
             Your one-stop solution for booking various advertising channels
             effectively. We connect advertisers with premium ad spaces across
             multiple platforms.
