@@ -1,5 +1,8 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa6";
+import suresh from "../../assets/HomePage/ClientsSays/suresh.png";
+import naina from "../../assets/HomePage/ClientsSays/naina.png"
+import aditya from "../../assets/HomePage/ClientsSays/aditya.png"
 
 const testimonials = [
   {
@@ -9,7 +12,7 @@ const testimonials = [
     name: "Naina Joshi",
     role: "Marketing Director, Tech Vision Inc.",
     image:
-      "https://randomuser.me/api/portraits/women/44.jpg",
+     naina
   },
   {
     rating: 5,
@@ -18,7 +21,7 @@ const testimonials = [
     name: "Suresh Batra",
     role: "CEO, GrowthBox",
     image:
-      "https://randomuser.me/api/portraits/men/32.jpg",
+      suresh,
   },
   {
     rating: 3,
@@ -27,7 +30,7 @@ const testimonials = [
     name: "Aditya Verma",
     role: "Brand Manager, Urban Styles",
     image:
-      "https://randomuser.me/api/portraits/men/75.jpg",
+      aditya,
   },
 ];
 
@@ -87,10 +90,18 @@ export default function ClientTestimonials() {
     >
       <div className="w-[80%] mx-auto px-6">
         <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-semibold text-black">
-            What Our Clients Say
-          </h2>
-          <p className="mt-3 text-gray-600 max-w-2xl mx-auto">
+          
+          <h2 className="text-center text-[45px] font-bold text-black">
+                    <span className="relative inline-block">
+                        What Ou{" "}
+                        <span className="absolute left-0 bottom-2 w-[48%] h-[4px] bg-red-500" />
+                    </span>
+
+                     r Clients Say
+
+                </h2> 
+
+          <p className="mt-3 text-[#000000] max-w-4xl text-[20px] mx-auto">
             Discover how businesses are achieving their advertising goals
             with our platform
           </p>
@@ -106,7 +117,7 @@ export default function ClientTestimonials() {
               >
                 <StarRating rating={item.rating} isHover={hasAnimated} />
 
-                <p className="mt-4 text-gray-700 leading-relaxed text-left">
+                <p className="mt-4 text-gray-700 text-[18px] leading-relaxed text-left">
                   "{item.text}"
                 </p>
 
@@ -120,10 +131,10 @@ export default function ClientTestimonials() {
                   />
 
                   <div>
-                    <p className="font-medium text-black text-left">
+                    <p className="font-medium text-[20px] text-black text-left ">
                       {item.name}
                     </p>
-                    <p className="text-sm text-gray-500 text-left">
+                    <p className="text-[18px] font-normal text-gray-500 text-left">
                       {item.role}
                     </p>
                   </div>

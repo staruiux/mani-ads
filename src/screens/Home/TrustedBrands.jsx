@@ -30,13 +30,13 @@ export default function TrustedBrands() {
         <section className="w-full bg-white py-20">
             <div className="mx-auto px-6">
                 {/* Heading */}
-                <h2 className="text-center text-3xl md:text-4xl font-bold text-black">
+                <h2 className="text-center text-[45px] font-bold text-black">
                     <span className="relative inline-block">
-                        Trusted By{" "}
-                        <span className="absolute left-0 -bottom-1 w-[40%] h-[2px] bg-red-500" />
+                        Trusted B{" "}
+                        <span className="absolute left-0 bottom-2 w-[48%] h-1 bg-red-500" />
                     </span>
 
-                    Leading Brands
+                   y Leading Brands
 
                 </h2>
 
