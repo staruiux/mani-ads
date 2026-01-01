@@ -1,16 +1,29 @@
 import { useEffect, useRef, useState } from "react";
 
-const topCards = [
-  { id: 1, value: "99%", label: "weekly metro reach" },
-  { id: 2, value: "#1", label: "media partner (AIMA)" },
-  { id: 3, value: "#1", label: "sales team (Media i)" },
-  { id: 4, value: "35k+", label: "sites" },
-];
-
 const bottomStats = [
   { value: 15000, label: "Premium Ad Spaces World Wide", suffix: "+" },
-  { value: 150000000, label: "Daily Audience Reach", suffix: "+" },
+  { value: 150, label: "Daily Audience Reach", suffix: "M+" },
   { value: 98, label: "Client Satisfaction Rate", suffix: "%" },
+];
+
+const animationStages = [
+  [
+    { value: 15, duration: 0 },
+    { value: 150, duration: 300 },
+    { value: 1500, duration: 300 },
+    { value: 15000, duration: 800 },
+  ],
+  [
+    { value: 1, duration: 0 }, 
+    { value: 15, duration: 300 },
+    { value: 150, duration: 800 },
+  ],
+  [
+    { value: 95, duration: 0 },
+    { value: 96, duration: 200 },
+    { value: 97, duration: 200 },
+    { value: 98, duration: 400 },
+  ],
 ];
 
 export default function BrandImpactSection() {
@@ -19,70 +32,60 @@ export default function BrandImpactSection() {
   const [hovered, setHovered] = useState(false);
   const [bottomHovered, setBottomHovered] = useState(false);
   const [hasAnimated, setHasAnimated] = useState(false);
-  const [counts, setCounts] = useState(bottomStats.map(() => 0));
-  const animationFrameRef = useRef(null);
-  const startTimeRef = useRef(null);
+  
+  const [counts, setCounts] = useState([15, 1, 95]);
+  const timeoutsRef = useRef([]);
 
-  // Smooth easing function for natural animation
-  const easeOutExpo = (t) => {
-    return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
-  };
-
-  // Bottom count animation (only once on first hover)
   useEffect(() => {
     if (!bottomHovered || hasAnimated) return;
 
-    startTimeRef.current = null;
-    setAnimationDone(false); // reset display mode
+    setAnimationDone(false);
+    
+    timeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+    timeoutsRef.current = [];
 
-    const duration = 2000; // 2 seconds total animation
+    bottomStats.forEach((stat, statIndex) => {
+      const stages = animationStages[statIndex];
+      let accumulatedDelay = 0;
 
-    const animate = (timestamp) => {
-      if (!startTimeRef.current) startTimeRef.current = timestamp;
+      stages.forEach((stage, stageIndex) => {
+        const timeout = setTimeout(() => {
+          setCounts(prevCounts => {
+            const newCounts = [...prevCounts];
+            newCounts[statIndex] = stage.value;
+            return newCounts;
+          });
 
-      const elapsed = timestamp - startTimeRef.current;
+          if (statIndex === bottomStats.length - 1 && stageIndex === stages.length - 1) {
+            setTimeout(() => {
+              setAnimationDone(true);
+              setHasAnimated(true);
+            }, 100);
+          }
+        }, accumulatedDelay);
 
-      const progress = Math.min(elapsed / duration, 1);
-
-      const easedProgress = progress; // pure linear
-
-      setCounts(
-        bottomStats.map((item) => Math.floor(item.value * easedProgress))
-      );
-
-      if (progress < 1) {
-        animationFrameRef.current = requestAnimationFrame(animate);
-      } else {
-        setCounts(bottomStats.map((item) => item.value));
-        setAnimationDone(true); // switch to final text
-        setHasAnimated(true); // block future animations
-      }
-    };
-
-    animationFrameRef.current = requestAnimationFrame(animate);
+        timeoutsRef.current.push(timeout);
+        accumulatedDelay += stage.duration;
+      });
+    });
 
     return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
+      timeoutsRef.current.forEach(timeout => clearTimeout(timeout));
+      timeoutsRef.current = [];
     };
   }, [bottomHovered, hasAnimated]);
 
-  // Bottom
   const finalDisplay = ["15000+", "150M+", "98%"];
 
   return (
     <section className="w-full bg-[#f2f2f2] py-20 mt-39">
-      {/* ---------------- TOP SECTION ---------------- */}
       <div
-        className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-14 p-15"
+        className="mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-14 p-15"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
         <div className="flex justify-center items-center gap-20">
-          {/* LEFT COLUMN */}
           <div className="flex flex-col gap-6">
-            {/* Card 1 – Big */}
             <div
               className="rounded-xl min-w-72 p-6 flex flex-col justify-end items-start h-74 overflow-hidden"
               style={{
@@ -105,7 +108,6 @@ export default function BrandImpactSection() {
               </p>
             </div>
 
-            {/* Card 3 – Small */}
             <div
               className="rounded-xl min-w-72 p-6 flex flex-col justify-end items-start h-34 overflow-hidden"
               style={{
@@ -129,9 +131,7 @@ export default function BrandImpactSection() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN */}
           <div className="flex flex-col gap-6">
-            {/* Card 2 – Small */}
             <div
               className="rounded-xl min-w-72 p-6 flex flex-col justify-end items-start h-34 overflow-hidden "
               style={{
@@ -154,7 +154,6 @@ export default function BrandImpactSection() {
               </p>
             </div>
 
-            {/* Card 4 – Big */}
             <div
               className="rounded-xl min-w-72  p-6 flex flex-col justify-end items-start h-74 overflow-hidden"
               style={{
@@ -179,7 +178,6 @@ export default function BrandImpactSection() {
           </div>
         </div>
 
-        {/* Content */}
         <div className="w-4xl p-15 text-left flex flex-col justify-center items-start">
           <h2 className="text-4xl font-bold text-black mb-5">
             <span
@@ -202,7 +200,6 @@ export default function BrandImpactSection() {
         </div>
       </div>
 
-      {/* ---------------- BOTTOM SECTION ---------------- */}
       <div
         className="bg-white mt-20 py-16 "
         onMouseEnter={() => setBottomHovered(true)}

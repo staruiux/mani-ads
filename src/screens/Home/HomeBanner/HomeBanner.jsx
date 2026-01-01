@@ -55,8 +55,8 @@ export default function HomeBanner() {
           <div
             className="
               relative
-              transition-transform duration-1000 ease-in-out h-200 w-full top-40
-              group-hover:-translate-y-16
+              transition-transform duration-1000 ease-in-out h-200 w-230 right-5  -bottom-40
+              group-hover:-translate-y-15
             "
             style={{
               backgroundImage: `url(${BannerStand})`,
@@ -64,9 +64,10 @@ export default function HomeBanner() {
               backgroundRepeat: "no-repeat",
             }}
           >
-            <p className="absolute top-85 left-40 z-1 text-[28px] font-poppins font-bold" style={{color:"black"}}>If you're seeing this, <br/>
+            <p className="absolute top-75 left-30 z-1 text-[28px] font-poppins font-bold" style={{color:"black"}}>
+              If you're seeing this, <br/>
               the ad already won</p>
-            <img src={Banner} className="absolute top-40 left-20 h-[425px] w-[760px]" />
+            <img src={Banner} className="absolute top-40 left-20 h-105 w-190" />
           </div>
         </div>
       </div>
