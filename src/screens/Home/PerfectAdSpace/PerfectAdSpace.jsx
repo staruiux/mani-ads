@@ -96,7 +96,7 @@ export default function PerfectAdSpace() {
           ))}
         </div>
 
-        <div className="flex w-full max-w-150 h-13 rounded-full overflow-hidden bg-white mb-15">
+        <div className="flex min-w-120 h-13 rounded-full overflow-hidden bg-white mb-15">
           {/* Input */}
           <div className="relative flex-1 border border-gray-400 rounded-l-full border-r-0">
             <img
