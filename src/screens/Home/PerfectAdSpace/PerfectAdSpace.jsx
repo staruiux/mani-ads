@@ -58,7 +58,8 @@ export default function PerfectAdSpace() {
   }, [activeTab, search]);
 
   return (
-    <div className="w-full bg-white px-4 md:px-10 lg:px-15 2xl:px-40 py-8 border-5 h-[90vh] pb-25 font-poppins">
+  //  <div className="w-full bg-white px-4 md:px-10 lg:px-15 2xl:px-40 py-8 font-poppins min-h-screen">
+    <div className="w-full bg-white px-4 md:px-10 lg:px-15 2xl:px-40 py-8 border-5 min-h-screen pb-25 font-poppins">
       <h1
         style={{ fontSize: "48px" }}
         className=" font-bold mb-6 relative inline-block text-black text-left w-full "
@@ -96,7 +97,7 @@ export default function PerfectAdSpace() {
           ))}
         </div>
 
-        <div className="flex min-w-120 h-13 rounded-full overflow-hidden bg-white mb-15">
+        <div className="flex w-full max-w-xl h-13 rounded-full overflow-hidden bg-white mb-15">
           {/* Input */}
           <div className="relative flex-1 border border-gray-400 rounded-l-full border-r-0">
             <img
@@ -129,7 +130,7 @@ export default function PerfectAdSpace() {
 
       <div
         className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-6
-                    overflow-y-auto pr-2 max-h-[60vh] scrollbar-hidden"
+                    overflow-y-auto pr-2 max-h-full scrollbar-hidden"
       >
         {filteredData.map((item) => (
           <div
